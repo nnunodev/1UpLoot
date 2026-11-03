@@ -92,9 +92,9 @@ As I develop my skills, I would like to implement more features in this app like
 
 Wireframes done with Balsamiq, available here:
 
-* [Desktop](https://github.com/Brainvibe/1UpLoot/blob/master/data/wireframes/Desktop.png)
-* [Mobile](https://github.com/Brainvibe/1UpLoot/blob/master/data/wireframes/Mobile.png)
-* [Tablet](https://github.com/Brainvibe/1UpLoot/blob/master/data/wireframes/Tablet.png)
+* [Desktop](data/wireframes/Desktop.png)
+* [Mobile](data/wireframes/Mobile.png)
+* [Tablet](data/wireframes/Tablet.png)
 
 ## Technologies Used
 
