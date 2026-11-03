@@ -1,8 +1,9 @@
 # 1UpLoot
 
-<p align="center"> <img width="800" height="500" src="https://github.com/Brainvibe/1UpLoot/blob/master/data/page_image/site_screenshot.png"></p>
+<p align="center"> <img width="800" height="500" src="data/page_image/site_screenshot.png"></p>
 
-Live version [here](https://oneuploot.herokuapp.com/)
+> **Note:** the original Heroku deployment is retired (Heroku's free tier ended in 2022).
+> Run it locally using the setup steps below.
 
 ## Index
 
