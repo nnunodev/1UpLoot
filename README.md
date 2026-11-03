@@ -104,7 +104,7 @@ Wireframes done with Balsamiq, available here:
 * **CSS**
   * Used to style webpages.
 
-* **[Flask](http://flask.palletsprojects.com/en/1.1.x/)**
+* **[Flask](https://flask.palletsprojects.com/)**
   * Used to generate pages, generate dynamic links, and content within the application.
 
 * **[Python 3](https://www.python.org/)**
@@ -113,13 +113,13 @@ Wireframes done with Balsamiq, available here:
 * **[Mongodb](https://cloud.mongodb.com)**
   * Database used for this project, for CRUD (create, read, update & delete) tasks.
 
-* **[PyMongo](https://api.mongodb.com/python/current)**
+* **[PyMongo](https://pymongo.readthedocs.io/)**
   * Used to connect and transfer data to and from MongoDB.
 
 * **[Materialize](https://materializecss.com/)**
   * Web Framework used in the project based on Material Design by Google.
 
-* **[Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/latest/)**
+* **[bcrypt](https://pypi.org/project/bcrypt/)**
   * Used to encrypt all users passwords in the database.
 
 * **[JQuery](https://jquery.com)**
@@ -285,45 +285,60 @@ These instructions will be for [Visual Studio Code](https://code.visualstudio.co
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Git](https://git-scm.com/downloads)
 * [Python 3](https://www.python.org/)
-* [MongoDB Atlas](https://www.mongodb.com/) account
+* [MongoDB](https://www.mongodb.com/) — a local instance or an Atlas cluster
 * [pip](https://pypi.org/project/pip/)
 
 After you have everything installed, start by cloning the project from GitHub:
 
-* Go to [GitHub repository](https://github.com/Brainvibe/1UpLoot).
+* Go to [GitHub repository](https://github.com/nnunodev/1UpLoot).
 * Under the repository name, click the green "Clone or download" button.
 * In the Clone with HTTPs section, copy the clone URL for the repository.
 * Open the terminal in your IDE.
 * Change the current working directory to the location where you want the cloned directory to be created.
 * Copy paste the following command:
 
-```git clone https://github.com/Legaeldan/milestone-3```
+```bash
+git clone https://github.com/nnunodev/1UpLoot.git
+cd 1UpLoot
+```
 
 The repository is now cloned.
 
-* Install the requirements needed to run the project from the terminal using the following command:
+* Install the requirements in a virtual environment:
 
-```pip3 install -r requirements.txt```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-* After pip installs all packages, just type ```python app.py``` in the terminal and it will now run locally.
+* The app needs a MongoDB database and a session secret. Set them as environment variables (or create an `env.py` in the project root):
 
-### Deployment to Heroku
+```bash
+export MONGO_URI="mongodb://127.0.0.1:27017/1up_loot"
+export SECRET_KEY="$(python3 -c 'import secrets; print(secrets.token_hex(32))')"
+```
 
-To deploy this project to Heroku, follow these steps:
+* Start the app:
 
-* Log into [Heroku](https://dashboard.heroku.com/).
-* From the main dashboard, select the **New** dropdown, then select **Create new app**.
-* Give your app a unique name, and select the region you wish to deploy to.
-* After the app is created, select **Deploy** from the top of the page, and scroll down to **Deployment Method**.
-* Select **GitHub** as the method of deployment.
-* Log in using your **Github credentials**.
-* Select your username, and search for the reposity in the **repo-name** box.
-* Select **Connect** on the repository you wish to connect to.
-* Under **Manual deploy**, select the branch you wish to deploy, and hit **Deploy Branch**.
-* After the application is built, select **Settings** from the top of the page.
-* Select **Reveal Config Vars**.
-* Add the config keys for **IP**, **PORT**, **MONGO_URI**, **MONGO_DBNAME**, and **SECRET_KEY**.
-* Select **More** from the top right of the page, and select **Restart all dynos**.
+```bash
+python app.py     # http://127.0.0.1:5000
+```
+
+### Configuration
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `MONGO_URI` | yes | MongoDB connection string; the app raises a clear error at startup if it is unset |
+| `MONGO_DBNAME` | no | database name, defaults to `1up_loot` |
+| `SECRET_KEY` | recommended | signs session cookies; a dev-only default is used if unset |
+| `IP` / `PORT` | no | bind address for `python app.py`, defaults to `127.0.0.1:5000` |
+
+### Deployment
+
+The original Heroku deployment is retired (Heroku's free tier ended in 2022). The app runs anywhere
+with Python 3.9+ and a reachable MongoDB instance; a `Procfile` (`web: python app.py`) is included
+for platforms that read one.
 
 ## Credits
 
